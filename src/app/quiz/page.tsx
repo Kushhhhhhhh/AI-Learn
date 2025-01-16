@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import type { Metadata } from "next";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -11,11 +10,6 @@ import { Question } from '@/types/question';
 import Particles from "@/components/animated/particles";
 import QuestionSheet from '@/components/custom/question-sheet';
 import { TextShimmer } from '@/components/ui/text-shimmer';
-
-export const meta: Metadata = {
-  title: 'Quiz Generator',
-  description: 'Generate AI-based questions for your topic.',
-}
 
 export default function QuizGenerator() {
 
