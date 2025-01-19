@@ -30,10 +30,10 @@ export default {
 				},
 				pulse: {
 					'0%, 100%': {
-					  opacity: 1,
+					  opacity: '1',
 					},
 					'50%': {
-					  opacity: .5,
+					  opacity: '.5',
 					},
 				  },
 			  },
