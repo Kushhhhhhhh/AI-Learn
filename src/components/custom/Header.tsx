@@ -21,7 +21,7 @@ const Header = () => {
 
   useEffect(() => {
     if (isLoaded && !user) {
-      router.push("/sign-in");
+      router.push("/sign-up");
     }
   }, [isLoaded, user, router]);
 
