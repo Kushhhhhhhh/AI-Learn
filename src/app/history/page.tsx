@@ -70,7 +70,7 @@ export default function History() {
   }
 
   return (
-    <main className="bg-gradient-to-br from-black to-gray-900 text-white min-h-screen px-4 sm:px-6 lg:px-8 py-12">
+    <main className="bg-black text-white min-h-screen px-4 sm:px-6 lg:px-8 py-12">
       <motion.h1 
         className="text-4xl font-bold text-center mb-12"
         initial={{ opacity: 0, y: -20 }}

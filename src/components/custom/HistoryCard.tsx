@@ -37,7 +37,7 @@ const HistoryCard = ({
   };
 
   const handleDelete = async (_id: string) => {
-    setLoading(true); 
+    setLoading(true);
 
     try {
       await onDelete(_id);
@@ -66,6 +66,29 @@ const HistoryCard = ({
                 <p className="text-sm text-gray-400">{formatDate(item.createdAt)}</p>
               </div>
             </div>
+
+
+
+            <Button
+              variant="destructive"
+              disabled={loading}
+              onClick={() => item._id && handleDelete(item._id)}
+              className="text-red-200 hover:text-white transition-colors duration-200"
+            >
+              {loading ? (
+                <Loader2 className="w-6 h-6 animate-spin" />
+              ) : (
+                <Trash className="w-6 h-6" />
+              )}
+            </Button>
+
+
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="pt-4">
+
+          <div className="flex justify-between items-center mb-4">
+            <p className="text-sm md:text-lg font-medium text-gray-300">Concept: {item.query}</p>
             <Button
               variant="ghost"
               onClick={onToggle}
@@ -73,23 +96,7 @@ const HistoryCard = ({
             >
               {isOpen ? <ChevronUp className="w-6 h-6" /> : <ChevronDown className="w-6 h-6" />}
             </Button>
-
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="pt-4 flex justify-between">
-          <p className="text-lg font-medium text-gray-300 mb-4">Concept: {item.query}</p>
-          <Button
-            variant="destructive"
-            disabled={loading}
-            onClick={() => item._id && handleDelete(item._id)}
-            className="text-red-200 hover:text-white transition-colors duration-200"
-          >
-           {loading ? (
-              <Loader2 className="w-6 h-6 animate-spin" /> 
-            ) : (
-              <Trash className="w-6 h-6" />
-            )}
-          </Button>
+          </div>
 
           <AnimatePresence>
             {isOpen && (
@@ -115,6 +122,7 @@ const HistoryCard = ({
             )}
           </AnimatePresence>
         </CardContent>
+
       </Card>
     </motion.div>
   );
