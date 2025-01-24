@@ -10,7 +10,7 @@ import { containerVariants } from "@/styles/container-variant";
 export default function Home() {
 
   return (
-    <main className="relative flex flex-col w-full h-screen overflow-hidden">
+    <main className="relative flex flex-col w-full h-[90vh] md:min-h-screen overflow-hidden">
       <WavyBackground className="absolute inset-0 w-full h-full z-0">
         <div className="relative z-10 flex-1">
           <section className="w-full py-12 md:py-20 lg:py-24 xl:py-32">
@@ -21,11 +21,11 @@ export default function Home() {
                 initial="hidden"
                 animate="show"
               >
-                <motion.div className="space-y-4 text-white mb-6" variants={textVariants}>
-                  <h1 className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl lg:text-6xl">
+                <motion.div className="space-y-8 text-white mb-6" variants={textVariants}>
+                  <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-7xl">
                     Crush Concepts with AILearn
                   </h1>
-                  <p className="mx-auto max-w-[700px] text-sm md:text-lg">
+                  <p className="mx-auto max-w-[700px] text-gray-300 text-base md:text-xl">
                     Empower your learning with AI-driven explanations, examples, and analogies.
                     From complex theories to new skills, we&apos;ve got you covered
                   </p>

@@ -13,6 +13,12 @@ import {
 } from "@clerk/nextjs";
 import { navItems } from "@/data/nav";
 import { CiMenuBurger } from "react-icons/ci";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Header = () => {
   const { user, isLoaded } = useUser();
@@ -33,17 +39,50 @@ const Header = () => {
 
   return (
     <header className="bg-black text-white px-4 lg:px-8 h-16 flex items-center justify-between shadow-md">
-      
+
       <Link href="/" className="flex items-center gap-2">
-        <span className="font-semibold text-2xl md:text-3xl  md:font-bold">AI Learn</span>
+        <span className="font-bold font-sans text-xl md:text-2xl md:font-extrabold">AI Learn</span>
       </Link>
 
-      <nav className="hidden md:flex gap-6">
+      <nav className="hidden md:flex gap-6 items-center">
+      
+        <DropdownMenu>
+          <DropdownMenuTrigger>  
+            Features
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="bg-gray-950 text-white rounded-md shadow-md">
+            <DropdownMenuItem asChild>
+              <Link
+                href="/learn"
+                className="px-4 py-2 hover:bg-gray-700 transition-colors rounded-md block"
+              >
+                Learn
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link
+                href="/quiz"
+                className="px-4 py-2 hover:bg-gray-700 transition-colors rounded-md block"
+              >
+                Quiz
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link
+                href="/leetcode"
+                className="px-4 py-2 hover:bg-gray-700 transition-colors rounded-md block"
+              >
+                LeetCode
+              </Link>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+
         {navItems.map((link) => (
           <Link
             key={link.href}
             href={link.href}
-            className="text-base md:text-lg font-medium hover:text-gray-300 transition-colors duration-200"
+            className="text-sm md:text-base font-medium hover:text-gray-300 transition-colors duration-200"
           >
             {link.label}
           </Link>
@@ -74,19 +113,18 @@ const Header = () => {
       </div>
 
       <div
-        className={`fixed top-0 right-0 h-full w-64 bg-black shadow-lg transform ${
-          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-        } transition-transform duration-300 z-50`}
+        className={`fixed top-0 right-0 h-full w-64 bg-black shadow-lg transform ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+          } transition-transform duration-300 z-50`}
       >
         <div className="flex justify-between items-center px-4 py-4 border-b border-gray-700">
           <span className="text-xl font-bold text-white">Menu</span>
           <Button
-            className="text-white focus:outline-none"
-            variant="ghost"
+            className="text-white focus:outline-none rounded-full"
+            variant="outline"
             onClick={toggleMobileMenu}
           >
             <svg
-              className="w-6 h-6"
+              className="w-8 h-8 text-black"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -101,12 +139,46 @@ const Header = () => {
             </svg>
           </Button>
         </div>
-        <nav className="flex flex-col gap-8 mt-4 px-4 py-2">
+        <nav className="flex flex-col items-start gap-8 mt-4 px-4 py-2">
+          
+
+          <DropdownMenu>
+            <DropdownMenuTrigger> 
+            Features
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="bg-gray-950 text-white rounded-md shadow-md">
+              <DropdownMenuItem asChild>
+                <Link
+                  href="/learn"
+                  className="px-4 py-2 hover:bg-gray-700 transition-colors rounded-md block"
+                >
+                  Learn
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link
+                  href="/quiz"
+                  className="px-4 py-2 hover:bg-gray-700 transition-colors rounded-md block"
+                >
+                  Quiz
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link
+                  href="/leetcode"
+                  className="px-4 py-2 hover:bg-gray-700 transition-colors rounded-md block"
+                >
+                  LeetCode
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           {navItems.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-lg font-medium text-white hover:text-gray-300 transition-colors duration-200"
+              className="text-base font-medium text-white hover:text-gray-300 transition-colors duration-200"
               onClick={toggleMobileMenu}
             >
               {link.label}
@@ -120,8 +192,7 @@ const Header = () => {
             <UserButton
               appearance={{
                 elements: {
-                  userButtonAvatarBox:
-                    "h-12 w-12 border-2 border-white rounded-full",
+                  userButtonAvatarBox: "h-12 w-12 border-2 border-white rounded-full",
                 },
               }}
             />

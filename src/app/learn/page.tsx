@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Loader2, BookOpen, Send } from 'lucide-react';
+import { Loader2, Send } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -57,7 +57,6 @@ export default function Learn() {
         <Card className="">
           <CardHeader>
             <CardTitle className="text-3xl md:text-4xl font-bold text-center text-gray-100 flex items-center justify-center space-x-4">
-              <BookOpen className="w-8 h-8 md:w-10 md:h-10 text-blue-400 animate-pulse" />
               <h1 className='text-2xl sm:text-3xl md:text-4xl font-sans font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-blue-400'>AI Concept Learner</h1>
             </CardTitle>
           </CardHeader>

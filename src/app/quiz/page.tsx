@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { motion, AnimatePresence } from "framer-motion"
-import { Loader2, Brain } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
 import { Question } from '@/types/question';
 import Particles from "@/components/animated/particles";
 import QuestionSheet from '@/components/custom/question-sheet';
@@ -71,7 +71,6 @@ export default function QuizGenerator() {
             transition={{ duration: 0.5 }}
             className="text-center mb-8 flex items-center justify-center space-x-4"
           >
-            <Brain className="w-8 h-8 md:w-10 md:h-10 text-blue-400 animate-pulse" />
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-sans font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-blue-400">
               Quiz Generator
             </h1>
