@@ -57,7 +57,7 @@ export default function Learn() {
         <Card className="">
           <CardHeader>
             <CardTitle className="text-3xl md:text-4xl font-bold text-center text-gray-100 flex items-center justify-center space-x-4">
-              <h1 className='text-2xl sm:text-3xl md:text-4xl font-sans font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-blue-400'>AI Concept Learner</h1>
+              <h1 className='text-2xl sm:text-3xl md:text-4xl font-sans font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-blue-400'>Smart Learning for Curious Minds</h1>
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">

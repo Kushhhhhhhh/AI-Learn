@@ -72,7 +72,7 @@ export default function QuizGenerator() {
             className="text-center mb-8 flex items-center justify-center space-x-4"
           >
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-sans font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-blue-400">
-              Quiz Generator
+            Your Quiz, Your Rules
             </h1>
           </motion.div>
           <div className="space-y-4">

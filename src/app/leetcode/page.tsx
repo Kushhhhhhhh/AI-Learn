@@ -54,16 +54,21 @@ export default function Leetcode() {
   return (
     <div className="min-h-screen bg-black text-gray-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
-        <motion.h1 
-          className="text-2xl sm:text-3xl text-center mb-10 md:text-4xl font-sans font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-blue-400"
+        <motion.div
+          className="flex items-center justify-center text-center mb-10"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          LeetCode Problem Solver
-        </motion.h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-sans font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-indigo-500 to-blue-400">
+            Your LeetCode
+          </h1>
+          <span className="ml-2 text-3xl md:text-4xl font-sans font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 via-yellow-300 to-yellow-400">
+            Genie ✨
+          </span>
+        </motion.div>
 
-        <Card className="bg-gray-900 border-gray-700 shadow-lg">
+        <Card className="">
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-blue-200">Enter Problem Details</CardTitle>
           </CardHeader>
@@ -97,8 +102,8 @@ export default function Leetcode() {
                 </Select>
               </div>
 
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 disabled={loading}
                 className="w-full bg-indigo-500 hover:bg-blue-600 text-white"
               >
@@ -117,7 +122,7 @@ export default function Leetcode() {
 
         <AnimatePresence>
           {error && (
-            <motion.div 
+            <motion.div
               className="mt-6 p-4 bg-red-900/50 border border-red-700 text-red-100 rounded-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -131,7 +136,7 @@ export default function Leetcode() {
 
         <AnimatePresence>
           {response && (
-            <motion.div 
+            <motion.div
               className="mt-8 space-y-6"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

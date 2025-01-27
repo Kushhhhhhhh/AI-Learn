@@ -8,7 +8,7 @@ const apiKey = process.env.GEMINI_API_KEY as string;
 
 export const POST = async (req: NextRequest) => {
   try {
-
+   
     const { userId } = getAuth(req);
     if (!userId) {
       return NextResponse.json(
@@ -18,7 +18,6 @@ export const POST = async (req: NextRequest) => {
     }
 
     const { topic, difficulty } = await req.json();
-
     if (!topic || !difficulty) {
       return NextResponse.json(
         { error: "Topic and difficulty are required." },
@@ -39,14 +38,7 @@ export const POST = async (req: NextRequest) => {
       responseMimeType: "text/plain",
     };
 
-    const chatSession = model.startChat({
-      generationConfig,
-      history: [
-        {
-          role: "user",
-          parts: [
-            {
-              text: `You are an intelligent AI tutor specializing in generating topic-based quiz questions to help users learn and test their knowledge. Generate a JSON response that strictly adheres to the following format, with no additional text or explanation before or after the JSON block:
+    const prompt = `You are an intelligent AI tutor specializing in generating topic-based quiz questions to help users learn and test their knowledge. Generate a JSON response that strictly adheres to the following format, with no additional text or explanation before or after the JSON block:
 
 {
   "questions": [
@@ -59,56 +51,58 @@ export const POST = async (req: NextRequest) => {
         "D": "Option D"
       },
       "correctAnswer": "A"
-    },
-    {
-      "question": "Another question text",
-      "options": {
-        "A": "Option A",
-        "B": "Option B",
-        "C": "Option C",
-        "D": "Option D"
-      },
-      "correctAnswer": "B"
     }
-    // Add more questions as required
+    // Add 9 more questions
   ]
 }
 
 **Instructions**:
-1. The JSON should contain at least 10 multiple-choice questions (MCQs).
-2. Each question must have:
+1. Generate exactly 10 multiple-choice questions (MCQs) based on the provided topic and difficulty level.
+2. Each question must include:
    - A clear and concise "question" field.
-   - Four "options" labeled as "A", "B", "C", and "D".
+   - Four distinct options labeled as "A", "B", "C", and "D".
    - A "correctAnswer" field that specifies the correct option (e.g., "A").
-3. Do not include any unnecessary information, explanations, or formatting outside the JSON structure.
-4. The content must be aligned with the following parameters:
-   - **Topic**: {Insert the topic dynamically, e.g., "Machine Learning"}.
-   - **Difficulty**: {Insert the difficulty dynamically, e.g., "Intermediate"}.
+3. Ensure the questions are relevant to the provided topic and align with the specified difficulty level.
+4. Do not include any additional text, explanations, or formatting outside the JSON structure.
+5. The JSON response must be valid and parsable.
 
-Strictly adhere to this structure to ensure compatibility with the application.
-`,
-            },
-          ],
+**Parameters**:
+- **Topic**: ${topic}.
+- **Difficulty**: ${difficulty}.
+
+Strictly adhere to this structure to ensure compatibility with the application.`;
+
+    const chatSession = model.startChat({
+      generationConfig,
+      history: [
+        {
+          role: "user",
+          parts: [{ text: prompt }],
         },
       ],
     });
 
-    const result = await chatSession.sendMessage("Generate the question paper.");
+    const result = await chatSession.sendMessage(
+      "Generate the question paper based on the given topic and difficulty level only."
+    );
     const responseText = result.response.text();
 
-    const cleanResponse = responseText
-      .replace(/```json|```/g, '')
-      .trim();
+    const cleanResponse = responseText.replace(/```json|```/g, "").trim();
 
     try {
       const parsedResponse = JSON.parse(cleanResponse);
 
-      if (!parsedResponse.questions || !Array.isArray(parsedResponse.questions)) {
-        throw new Error("Invalid response format. 'questions' array is missing or malformed.");
+      if (
+        !parsedResponse.questions ||
+        !Array.isArray(parsedResponse.questions) ||
+        parsedResponse.questions.length !== 10
+      ) {
+        throw new Error(
+          "Invalid response format. 'questions' array is missing, malformed, or does not contain exactly 10 questions."
+        );
       }
 
       await connectToDB();
-
       const historyEntry = new History({
         userId,
         type: "Quiz",
@@ -116,22 +110,21 @@ Strictly adhere to this structure to ensure compatibility with the application.
         response: parsedResponse,
         createdAt: new Date(),
       });
-
       await historyEntry.save();
 
-      return NextResponse.json(parsedResponse);
 
+      return NextResponse.json(parsedResponse);
     } catch (error) {
       console.error("Error Parsing AI Response:", error);
       return NextResponse.json(
-        { error: "Error Parsing AI Response" },
+        { error: "Error Parsing AI Response. Please try again." },
         { status: 500 }
       );
     }
   } catch (error) {
     console.error("Internal server error:", error);
     return NextResponse.json(
-      { error: "Internal Server Error" },
+      { error: "Internal Server Error. Please try again later." },
       { status: 500 }
     );
   }
