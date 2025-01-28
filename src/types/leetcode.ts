@@ -9,5 +9,5 @@ export interface ResponseData {
   story: string
   problemStatement: string
   hints: string[]
-  solution: Solution[] | Solution | string
+  solution: Solution[] | Solution | string;
 }

@@ -4,20 +4,35 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ConceptSheet from "@/components/custom/concept-sheet";
 import QuestionSheet from "@/components/custom/question-sheet";
+import LeetcodeSheet from "@/components/custom/leetcode-sheet";
 import { ApiResponse } from "@/types/api-response";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ResponseData } from "@/types/leetcode";
+import { Question } from "@/types/question";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Clock, ChevronDown, ChevronUp, Trash, Loader2 } from "lucide-react";
 import { format, isValid } from "date-fns";
-import { Question } from '@/types/question';
-import { HistoryItem } from "@/types/history-item";
+
+// Define the HistoryItem interface
+export interface HistoryItem {
+  _id: string;
+  type: "Learn" | "Quiz" | "Leetcode Problem";
+  query: string;
+  createdAt: string;
+  response: ApiResponse | { questions: Question[] } | ResponseData | null;
+}
 
 const HistoryCard = ({
   item,
   index,
   isOpen,
   onToggle,
-  onDelete
+  onDelete,
 }: {
   item: HistoryItem;
   index: number;
@@ -25,7 +40,6 @@ const HistoryCard = ({
   onToggle: () => void;
   onDelete: (_id: string) => void;
 }) => {
-
   const [loading, setLoading] = useState<boolean>(false);
 
   const formatDate = (dateString: string) => {
@@ -38,7 +52,6 @@ const HistoryCard = ({
 
   const handleDelete = async (_id: string) => {
     setLoading(true);
-
     try {
       await onDelete(_id);
     } catch (error) {
@@ -62,13 +75,14 @@ const HistoryCard = ({
                 <Clock className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-white">{item.type}</h3>
-                <p className="text-sm text-gray-400">{formatDate(item.createdAt)}</p>
+                <h3 className="text-xl font-semibold text-white">
+                  {item.type}
+                </h3>
+                <p className="text-sm text-gray-400">
+                  {formatDate(item.createdAt)}
+                </p>
               </div>
             </div>
-
-
-
             <Button
               variant="destructive"
               disabled={loading}
@@ -81,20 +95,23 @@ const HistoryCard = ({
                 <Trash className="w-6 h-6" />
               )}
             </Button>
-
-
           </CardTitle>
         </CardHeader>
         <CardContent className="pt-4">
-
           <div className="flex justify-between items-center mb-4">
-            <p className="text-sm md:text-lg font-medium text-gray-300">Concept: {item.query}</p>
+            <p className="text-sm md:text-lg font-medium text-gray-300">
+              Concept: {item.query}
+            </p>
             <Button
               variant="ghost"
               onClick={onToggle}
               className="text-white hover:text-blue-400 transition-colors duration-200"
             >
-              {isOpen ? <ChevronUp className="w-6 h-6" /> : <ChevronDown className="w-6 h-6" />}
+              {isOpen ? (
+                <ChevronUp className="w-6 h-6" />
+              ) : (
+                <ChevronDown className="w-6 h-6" />
+              )}
             </Button>
           </div>
 
@@ -111,18 +128,21 @@ const HistoryCard = ({
                   <ConceptSheet response={item.response as ApiResponse} />
                 ) : item.type === "Quiz" ? (
                   <QuestionSheet
-                    questions={item.response.questions as Question[]}
+                    questions={(item.response as { questions: Question[] }).questions}
                     selectedAnswers={{}}
                     handleOptionClick={() => { }}
                   />
+                ) : item.type === "Leetcode Problem" ? (
+                  <LeetcodeSheet response={item.response as ResponseData} />
                 ) : (
-                  <p className="text-sm text-gray-500">Unsupported type: {item.type}</p>
+                  <p className="text-sm text-gray-500">
+                    Unsupported type: {item.type}
+                  </p>
                 )}
               </motion.div>
             )}
           </AnimatePresence>
         </CardContent>
-
       </Card>
     </motion.div>
   );
