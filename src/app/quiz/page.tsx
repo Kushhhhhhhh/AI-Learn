@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Loader2 } from 'lucide-react'
 import { Question } from '@/types/question';
 import Particles from "@/components/animated/particles";
-import QuestionSheet from '@/components/custom/question-sheet';
+import QuestionSheet from '@/components/sheets/question-sheet';
 import { TextShimmer } from '@/components/ui/text-shimmer';
 
 export default function QuizGenerator() {
@@ -72,7 +72,7 @@ export default function QuizGenerator() {
             className="text-center mb-8 flex items-center justify-center space-x-4"
           >
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-sans font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-blue-400">
-            Your Quiz, Your Rules
+              Your Quiz, Your Rules
             </h1>
           </motion.div>
           <div className="space-y-4">

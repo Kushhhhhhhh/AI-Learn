@@ -69,6 +69,14 @@ const Header = () => {
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
               <Link
+                href="/story-mode"
+                className="px-4 py-2 hover:bg-gray-700 transition-colors rounded-md block"
+              >
+                Story Mode
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link
                 href="/leetcode"
                 className="px-4 py-2 hover:bg-gray-700 transition-colors rounded-md block"
               >
@@ -163,6 +171,14 @@ const Header = () => {
                   Quiz
                 </Link>
               </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+              <Link
+                href="/story-mode"
+                className="px-4 py-2 hover:bg-gray-700 transition-colors rounded-md block"
+              >
+                Story Mode
+              </Link>
+            </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link
                   href="/leetcode"

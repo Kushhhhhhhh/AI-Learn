@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { Loader2 } from 'lucide-react';
 import { ResponseData } from "@/types/leetcode";
-import LeetcodeSheet from "@/components/custom/leetcode-sheet";
+import LeetcodeSheet from "@/components/sheets/leetcode-sheet";
 
 export default function Leetcode() {
   const [problemNumber, setProblemNumber] = useState<string>("");

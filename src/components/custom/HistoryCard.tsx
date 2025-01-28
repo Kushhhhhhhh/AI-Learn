@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import ConceptSheet from "@/components/custom/concept-sheet";
-import QuestionSheet from "@/components/custom/question-sheet";
-import LeetcodeSheet from "@/components/custom/leetcode-sheet";
+import ConceptSheet from "@/components/sheets/concept-sheet";
+import QuestionSheet from "@/components/sheets/question-sheet";
+import LeetcodeSheet from "@/components/sheets/leetcode-sheet";
+import StorySheet from "@/components/sheets/story-sheet";
 import { ApiResponse } from "@/types/api-response";
 import { ResponseData } from "@/types/leetcode";
 import { Question } from "@/types/question";
+import { Story } from "@/types/story"
 import {
   Card,
   CardContent,
@@ -17,15 +19,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Clock, ChevronDown, ChevronUp, Trash, Loader2 } from "lucide-react";
 import { format, isValid } from "date-fns";
-
-// Define the HistoryItem interface
-export interface HistoryItem {
-  _id: string;
-  type: "Learn" | "Quiz" | "Leetcode Problem";
-  query: string;
-  createdAt: string;
-  response: ApiResponse | { questions: Question[] } | ResponseData | null;
-}
+import { HistoryItem } from "@/types/history-item";
 
 const HistoryCard = ({
   item,
@@ -50,7 +44,8 @@ const HistoryCard = ({
     return "Invalid Date";
   };
 
-  const handleDelete = async (_id: string) => {
+  const handleDelete = async (_id?: string) => {
+    if (!_id) return; 
     setLoading(true);
     try {
       await onDelete(_id);
@@ -86,7 +81,7 @@ const HistoryCard = ({
             <Button
               variant="destructive"
               disabled={loading}
-              onClick={() => item._id && handleDelete(item._id)}
+              onClick={() => handleDelete(item._id)}
               className="text-red-200 hover:text-white transition-colors duration-200"
             >
               {loading ? (
@@ -124,19 +119,21 @@ const HistoryCard = ({
                 transition={{ duration: 0.3 }}
                 className="bg-zinc-950 rounded-lg"
               >
-                {item.type === "Learn" ? (
+                {item.type === "Learn" && item.response ? (
                   <ConceptSheet response={item.response as ApiResponse} />
-                ) : item.type === "Quiz" ? (
+                ) : item.type === "Quiz" && item.response ? (
                   <QuestionSheet
                     questions={(item.response as { questions: Question[] }).questions}
                     selectedAnswers={{}}
-                    handleOptionClick={() => { }}
+                    handleOptionClick={() => {}}
                   />
-                ) : item.type === "Leetcode Problem" ? (
+                ) : item.type === "Leetcode Problem" && item.response ? (
                   <LeetcodeSheet response={item.response as ResponseData} />
+                ) : item.type === "Story" && item.response ? (
+                  <StorySheet story={item.response as Story} />
                 ) : (
                   <p className="text-sm text-gray-500">
-                    Unsupported type: {item.type}
+                    Unsupported or empty response.
                   </p>
                 )}
               </motion.div>

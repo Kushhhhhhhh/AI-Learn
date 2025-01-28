@@ -8,9 +8,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ApiResponse } from '@/types/api-response';
 import Particles from "@/components/animated/particles";
-import ConceptSheet from '@/components/custom/concept-sheet';
+import ConceptSheet from '@/components/sheets/concept-sheet';
 
-export default function Learn() {  
+export default function Learn() {
 
   const [concept, setConcept] = useState('');
   const [response, setResponse] = useState<ApiResponse | null>(null);
@@ -57,7 +57,7 @@ export default function Learn() {
         <Card className="">
           <CardHeader>
             <CardTitle className="text-3xl md:text-4xl font-bold text-center text-gray-100 flex items-center justify-center space-x-4">
-              <h1 className='text-2xl sm:text-3xl md:text-4xl font-sans font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-blue-400'>Smart Learning for Curious Minds</h1>
+              <h1 className='text-2xl sm:text-3xl md:text-4xl font-sans font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-blue-400 p-2'>Smart Learning for Curious Minds</h1>
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -100,10 +100,10 @@ export default function Learn() {
               )}
             </AnimatePresence>
             <AnimatePresence>
-          {response && (
-            <ConceptSheet response={response} />
-          )}
-        </AnimatePresence>
+              {response && (
+                <ConceptSheet response={response} />
+              )}
+            </AnimatePresence>
           </CardContent>
         </Card>
       </motion.div>
