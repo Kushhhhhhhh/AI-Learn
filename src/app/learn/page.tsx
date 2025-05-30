@@ -56,8 +56,15 @@ export default function Learn() {
       >
         <Card className="">
           <CardHeader>
-            <CardTitle className="text-3xl md:text-4xl font-bold text-center text-gray-100 flex items-center justify-center space-x-4">
-              <h1 className='text-2xl sm:text-3xl md:text-4xl font-sans font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-blue-400 p-2'>Smart Learning for Curious Minds</h1>
+            <CardTitle className="flex items-center justify-center gap-3 text-center text-gray-100">
+              <img
+                src="/logo-2.png"
+                alt="Smart Learning Icon"
+                className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
+              />
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-sans font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-blue-400 p-2">
+                Smart Learning for Curious Minds
+              </h1>
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">

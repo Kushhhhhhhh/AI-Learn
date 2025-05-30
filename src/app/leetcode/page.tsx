@@ -55,7 +55,7 @@ export default function Leetcode() {
     <div className="min-h-screen bg-black text-gray-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <motion.div
-          className="flex items-center justify-center text-center mb-10"
+          className="flex items-center justify-center text-center mb-10 gap-2"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -63,9 +63,14 @@ export default function Leetcode() {
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-sans font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-indigo-500 to-blue-400">
             Your LeetCode
           </h1>
-          <span className="ml-2 text-2xl sm:text-3xl md:text-4xl font-sans font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 via-yellow-300 to-yellow-400">
-            Genie ✨
+          <span className="text-2xl sm:text-3xl md:text-4xl font-sans font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 via-yellow-300 to-yellow-400">
+            Genie
           </span>
+          <img
+            src="/logo-2.png"
+            alt="Genie Icon"
+            className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
+          />
         </motion.div>
 
         <Card>

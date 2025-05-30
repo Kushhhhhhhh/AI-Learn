@@ -62,9 +62,16 @@ const StoryMode = () => {
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
         className="w-full max-w-md md:max-w-2xl h-full p-8 rounded-lg shadow-lg"
       >
-        <h1 className="text-2xl sm:text-3xl md:text-4xl text-center font-sans font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-blue-400 mb-10 p-2">
-          Story Mode
-        </h1>
+        <div className="flex items-center justify-center gap-3 mb-10">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-sans font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-blue-400 p-2">
+            Story Mode
+          </h1>
+          <img
+            src="/logo-2.png"
+            alt="Story Icon"
+            className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
+          />
+        </div>
 
         <div className="space-y-6">
           <div>
@@ -86,7 +93,11 @@ const StoryMode = () => {
             <RadioGroup value={genre} onValueChange={setGenre} className="flex justify-between">
               {["horror", "comedy", "action"].map((g) => (
                 <div key={g} className="flex items-center space-x-2">
-                  <RadioGroupItem value={g} id={g} />
+                  <RadioGroupItem
+  value={g}
+  id={g}
+  className="bg-black border-white text-white data-[state=checked]:bg-white data-[state=checked]:border-white"
+/>
                   <Label htmlFor={g} className="capitalize">
                     {g}
                   </Label>

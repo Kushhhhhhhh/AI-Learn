@@ -74,6 +74,11 @@ export default function QuizGenerator() {
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-sans font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-blue-400">
               Your Quiz, Your Rules
             </h1>
+            <img
+              src="/logo-2.png"
+              alt="Quiz Icon"
+              className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
+            />
           </motion.div>
           <div className="space-y-4">
             <div>

@@ -71,14 +71,24 @@ export default function History() {
 
   return (
     <main className="bg-black text-white min-h-screen px-4 sm:px-6 lg:px-8 py-12">
-      <motion.h1 
-        className="text-4xl font-bold text-center mb-12"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        Your Progress
-      </motion.h1>
+      <div className="flex items-center justify-center gap-4 mb-12">
+  <motion.h1 
+    className="text-4xl font-bold text-center"
+    initial={{ opacity: 0, y: -20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5 }}
+  >
+    Your Progress
+  </motion.h1>
+  <motion.img
+    src="/logo-2.png"
+    alt="Progress Icon"
+    className="w-10 h-10 object-contain"
+    initial={{ opacity: 0, scale: 0.8 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.5, delay: 0.2 }}
+  />
+</div>
 
       {history.length === 0 ? (
         <motion.div 

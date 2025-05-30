@@ -41,7 +41,7 @@ const Header = () => {
     <header className="bg-black text-white px-4 lg:px-8 h-16 flex items-center justify-between shadow-md">
 
       <Link href="/" className="flex items-center gap-2">
-        <span className="font-bold font-sans text-xl md:text-2xl md:font-extrabold">AI Learn</span>
+        <span className="font-bold font-sans text-3xl md:text-4xl md:font-extrabold">AI Learn</span>
       </Link>
 
       <nav className="hidden md:flex gap-6 items-center">
