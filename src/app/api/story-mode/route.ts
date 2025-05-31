@@ -46,44 +46,43 @@ export const POST = async (req: NextRequest) => {
 
     // Define the prompt for story generation
     const prompt = `
-      You are a creative storyteller AI. Your task is to generate an engaging and immersive story based on the following topic and genre:
+You are a creative storyteller AI. Your task is to generate an engaging and immersive short story using the structure below.
 
-      Topic: ${topic}
-      Genre: ${genre}
+Input:
+- Topic: \${topic}
+- Genre: \${genre}
 
-      The story should include the following elements:
-      1. A captivating introduction that sets the scene.
-      2. Well-developed characters relevant to the topic and genre.
-      3. A clear plot with a beginning, middle, and end.
-      4. Dialogue that feels natural and advances the story.
-      5. A satisfying conclusion that ties everything together.
+Story Requirements:
+1. The story should be between 500–1000 words and appropriate for a general audience.
+2. It must include:
+   - A short, catchy title.
+   - A clear introduction that sets the scene.
+   - A list of characters with names and brief bios.
+   - A full story written in a narrative style (third person preferred).
+   - A separate list of playful or meaningful dialogue snippets between the characters.
+   - A satisfying conclusion that wraps up the plot.
 
-      Ensure the story is appropriate for a general audience and aligns with the provided genre. The story should be between 500-1000 words.
+Output Format (respond only in valid JSON):
 
-      Respond with the story in the following JSON format:
-      {
-        "title": "A creative title for the story",
-        "introduction": "A brief introduction to set the scene",
-        "characters": [
-          {
-            "name": "Character Name",
-            "description": "Brief description of the character"
-          }
-        ],
-        "plot": {
-          "beginning": "The setup and initial events",
-          "middle": "The development and conflict",
-          "end": "The resolution and conclusion"
-        },
-        "dialogue": [
-          "Example dialogue between characters",
-          "Another example of dialogue"
-        ],
-        "conclusion": "A satisfying ending to the story"
-      }
+{
+  "title": "Title of the story",
+  "characters": [
+    {
+      "name": "Character Name",
+      "description": "Short bio about the character"
+    }
+  ],
+  "introduction": "Set the scene in 2–3 lines",
+  "story": "Full narrative of the story with beginning, middle, and end. Make it immersive and coherent.",
+  "dialogue": [
+    "Character A: Dialogue line...",
+    "Character B: Reply line..."
+  ],
+  "conclusion": "Summarize the ending and the lesson or resolution"
+}
 
-      Do not include any additional text outside of the JSON format.
-    `;
+Make sure the JSON is valid, and all sections are balanced in detail and tone.
+`;
 
     // Start the chat session with Gemini AI
     const chatSession = model.startChat({

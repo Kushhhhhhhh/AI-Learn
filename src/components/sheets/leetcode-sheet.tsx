@@ -112,7 +112,7 @@ export default function LeetcodeSheet({ response }: LeetcodeSheetProps) {
         <Card className="bg-gradient-to-br from-gray-800 to-gray-900 border-gray-700 shadow-lg hover:shadow-xl transition-shadow duration-300">
           <CardHeader className="border-b border-gray-700 pb-4">
             <CardTitle className="text-2xl font-bold text-purple-400 flex items-center">
-              <Code2 className="mr-3 text-purple-300" /> Story
+              <Code2 className="mr-3 text-purple-300" /> Analogy
             </CardTitle>
           </CardHeader>
           <CardContent className="pt-4">

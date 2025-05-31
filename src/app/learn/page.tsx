@@ -1,75 +1,83 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Loader2, Send } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { ApiResponse } from '@/types/api-response';
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Particles from "@/components/animated/particles";
-import ConceptSheet from '@/components/sheets/concept-sheet';
+import ConceptSheet from "@/components/sheets/concept-sheet";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Loader2, Send } from "lucide-react";
 
-export default function Learn() {
-
-  const [concept, setConcept] = useState('');
-  const [response, setResponse] = useState<ApiResponse | null>(null);
+export default function LearnPage() {
+  const [concept, setConcept] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState("");
+  const [response, setResponse] = useState(null);
 
   const handleSubmit = async () => {
     setLoading(true);
-    setError(null);
-    setResponse(null);
+    setError("");
 
     try {
-      const res = await fetch('/api/learn', {
-        method: 'POST',
+      // Simulate an API call
+      const res = await fetch("/api/learn", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ concept }),
       });
 
       if (!res.ok) {
-        const { error } = await res.json();
-        throw new Error(error || 'Failed to fetch explanation.');
+        throw new Error("Failed to fetch data");
       }
 
-      const data: ApiResponse = await res.json();
+      const data = await res.json();
       setResponse(data);
-    } catch (error: unknown) {
-      setError(error instanceof Error ? error.message : 'An error occurred.');
+    } catch (err: any) {
+      setError(err.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <main className="w-full min-h-screen bg-black text-gray-100 py-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      <Particles className="absolute inset-0 z-0 bg-center bg-fixed" quantity={200} />
+    <main className="w-full min-h-screen bg-black text-gray-100 py-12 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
+      <Particles className="absolute inset-0 z-0" quantity={200} />
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="max-w-4xl mx-auto relative z-10"
       >
-        <Card className="">
-          <CardHeader>
-            <CardTitle className="flex items-center justify-center gap-3 text-center text-gray-100">
-              <img
-                src="/logo-2.png"
-                alt="Smart Learning Icon"
-                className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
-              />
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-sans font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-blue-400 p-2">
-                Smart Learning for Curious Minds
-              </h1>
+        <Card>
+          <CardHeader className="pb-0 text-center">
+            <CardTitle>
+              <div className="flex items-center gap-4">
+                <img
+                  src="/logo-2.png"
+                  alt="Smart Learning Icon"
+                  className="w-10 h-10 sm:w-12 sm:h-12 mb-2 object-contain"
+                />
+                <h1 className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-100 to-blue-200">
+                  Master Concepts Effortlessly
+                </h1>
+              </div>
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="space-y-2">
-              <label htmlFor="concept" className="text-xl font-semibold text-gray-300">
+          <CardContent className="p-6 space-y-8">
+            <div className="space-y-4">
+              <label
+                htmlFor="concept"
+                className="block text-lg sm:text-xl font-semibold text-gray-300"
+              >
                 Enter a Concept
               </label>
               <div className="relative">
@@ -94,21 +102,31 @@ export default function Learn() {
                 </Button>
               </div>
             </div>
+
             <AnimatePresence>
               {error && (
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="text-red-400 text-sm mt-2"
+                  className="text-red-400 text-sm text-center bg-gray-800 rounded-md p-3 shadow-lg"
                 >
-                  <strong>Error:</strong> {error}
+                  <strong>Oops!</strong> Something went wrong while processing your request. Our Application might have encountered an issue.
+                  <br />
+                  <span className="text-gray-300">Please try again in a few moments. If the problem persists, let us know!</span>
                 </motion.div>
               )}
             </AnimatePresence>
+
             <AnimatePresence>
               {response && (
-                <ConceptSheet response={response} />
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <ConceptSheet response={response} />
+                </motion.div>
               )}
             </AnimatePresence>
           </CardContent>

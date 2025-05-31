@@ -38,7 +38,7 @@ export const POST = async (req: NextRequest) => {
       responseMimeType: "text/plain",
     };
 
-    const prompt = `You are an intelligent AI tutor specializing in generating topic-based quiz questions to help users learn and test their knowledge. Generate a JSON response that strictly adheres to the following format, with no additional text or explanation before or after the JSON block:
+    const prompt = `You are an intelligent AI tutor specializing in generating topic-based multiple-choice questions (MCQs) to help users learn and test their knowledge. Generate a JSON response that strictly adheres to the following format, with no additional text or explanation before or after the JSON block:
 
 {
   "questions": [
@@ -56,21 +56,22 @@ export const POST = async (req: NextRequest) => {
   ]
 }
 
-**Instructions**:
-1. Generate exactly 10 multiple-choice questions (MCQs) based on the provided topic and difficulty level.
+Instructions:
+1. Generate exactly 10 multiple-choice questions based on the provided topic and difficulty level.
 2. Each question must include:
-   - A clear and concise "question" field.
-   - Four distinct options labeled as "A", "B", "C", and "D".
-   - A "correctAnswer" field that specifies the correct option (e.g., "A").
-3. Ensure the questions are relevant to the provided topic and align with the specified difficulty level.
-4. Do not include any additional text, explanations, or formatting outside the JSON structure.
-5. The JSON response must be valid and parsable.
+   - A clear and concise 'question' field.
+   - Four distinct options labeled as 'A', 'B', 'C', and 'D'.
+   - A 'correctAnswer' field indicating the correct option (e.g., 'C').
+3. **Ensure that all options are similar in length** to avoid guessability based on option length.
+4. **Randomize the position of the correct answer across A, B, C, and D** — do not favor any one letter.
+5. The incorrect options should be **plausible but incorrect**, encouraging critical thinking.
+6. Avoid repetition of words or phrases across multiple options in the same question.
+7. All questions must be directly relevant to the given topic and align with the specified difficulty level.
+8. The JSON structure must be valid, parsable, and contain no additional text or comments.
 
-**Parameters**:
-- **Topic**: ${topic}.
-- **Difficulty**: ${difficulty}.
-
-Strictly adhere to this structure to ensure compatibility with the application.`;
+Parameters:
+- Topic: \${topic}
+- Difficulty: \${difficulty}`;
 
     const chatSession = model.startChat({
       generationConfig,

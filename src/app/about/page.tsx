@@ -81,38 +81,38 @@ const About = () => {
         </section>
 
         <ParallaxText baseVelocity={-5}>
-  Simplified Learning • Story-Driven Topics • LeetCode Insights • Quiz Generation • Personalized History •
-</ParallaxText>
+          Simplified Learning • Story-Driven Topics • LeetCode Insights • Quiz Generation • Personalized History •
+        </ParallaxText>
 
         <section className="py-16 px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8"
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
-          >
-            <motion.div variants={itemVariants}>
-              <GlowCard
-                icon={<Target className="w-10 h-10 text-white" />}
-                title="Our Mission"
-                content="To democratize education by leveraging AI technology, making high-quality learning accessible to everyone, anywhere, at any time."
-              />
-            </motion.div>
-            <motion.div variants={itemVariants}>
-              <GlowCard
-                icon={<Lightbulb className="w-10 h-10 text-white" />}
-                title="Our Vision"
-                content="A world where every individual has the opportunity to unlock their full potential through personalized, AI-driven learning experiences."
-              />
-            </motion.div>
-          </motion.div>
-        </section>
+  <motion.div
+    className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8"
+    initial="hidden"
+    animate="visible"
+    variants={containerVariants}
+  >
+    <motion.div variants={itemVariants}>
+      <GlowCard
+        icon={<Target className="w-10 h-10 text-white" />}
+        title="Our Mission"
+        content="Empowering learners with AI-driven tools to simplify, personalize, and transform the way they acquire knowledge, one step at a time."
+      />
+    </motion.div>
+    <motion.div variants={itemVariants}>
+      <GlowCard
+        icon={<Lightbulb className="w-10 h-10 text-white" />}
+        title="Our Vision"
+        content="To redefine education by creating an interactive, story-driven, and adaptive learning ecosystem tailored to every individual."
+      />
+    </motion.div>
+  </motion.div>
+</section>
 
         <section className="py-16 px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <h3 className="text-4xl md:text-7xl font-bold text-white mb-10">Our Impact</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
             <div>
-              <p className="text-4xl font-extrabold text-white">8+</p>
+              <p className="text-4xl font-extrabold text-white">22+</p>
               <p className="text-sm text-gray-400">Students Helped</p>
             </div>
             <div>

@@ -45,44 +45,59 @@ export const POST = async (req: NextRequest) => {
           parts: [
             {
               text: `
-                You are an intelligent AI tutor specializing in breaking down concepts into simple, easy-to-understand explanations. Provide a thorough explanation of the following concept:
-                
-                Concept: ${concept}.
-                
-                Please respond with the following JSON structure:
+                You are an intelligent AI tutor specializing in breaking down complex concepts into simple, easy-to-understand explanations. Your task is to provide a thorough and structured explanation of the given concept.
 
+                **Instructions:**
+                1. Carefully analyze the concept provided.
+                2. Respond using the exact JSON format specified below.
+                3. Do not include any additional text outside of the JSON structure.
+                4. Ensure your explanations are clear, concise, and suitable for learners at all levels.
+
+                **Concept:**
+                \`\`\`
+                ${concept}
+                \`\`\`
+
+                **Expected JSON Format:**
+                \`\`\`json
                 {
                   "concept": "Concept Name",
-                  "introduction": "Brief overview or definition of the concept.",
-                  "explanation": "Step-by-step explanation of the concept, including its purpose and key components.",
+                  "introduction": "Provide a brief overview or definition of the concept.",
+                  "explanation": "Offer a step-by-step explanation of the concept, covering its purpose, key components, and how it works.",
                   "examples": [
-                    "Description of the concept in action.",
-                    "Another relatable example."
+                    "Example 1: Description of the concept in action.",
+                    "Example 2: Another relatable example for better understanding."
                   ],
                   "analogies": [
-                    "A real-world comparison that simplifies the concept.",
-                    "Another analogy to reinforce understanding."
+                    "Analogy 1: A real-world comparison that simplifies the concept.",
+                    "Analogy 2: Another analogy to reinforce understanding."
                   ],
                   "realWorldApplications": [
-                    "Where and how this concept is used in real life.",
-                    "Another application of the concept."
+                    "Application 1: Where and how this concept is used in real life.",
+                    "Application 2: Another practical application."
                   ],
                   "objectives": [
-                    "The goals or purpose of understanding this concept.",
-                    "Additional key objectives."
+                    "Objective 1: Goals or purposes of understanding this concept.",
+                    "Objective 2: Additional objectives or benefits."
                   ],
                   "benefits": [
-                    "The advantages or positive outcomes of this concept.",
-                    "Further benefits of applying this concept."
+                    "Benefit 1: Advantages or positive outcomes of this concept.",
+                    "Benefit 2: Further benefits of applying this concept."
                   ],
                   "challenges": [
-                    "Common difficulties in understanding or applying this concept.",
-                    "Additional challenges or limitations."
+                    "Challenge 1: Common difficulties in understanding or applying this concept.",
+                    "Challenge 2: Additional challenges or limitations."
                   ]
                 }
+                \`\`\`
 
-                Ensure that the output is in the exact JSON format above. Do not include any other text outside of this JSON format.
-              `,
+                **Important Notes:**
+                - Ensure your JSON is properly formatted and free of syntax errors.
+                - Avoid ambiguous language; strive for clarity and precision.
+                - Do not add any markdown, additional commentary, or formatting outside the JSON block.
+                - Respond strictly within the provided structure, ensuring every field is addressed.
+
+                Thank you!`,
             },
           ],
         },
@@ -92,8 +107,10 @@ export const POST = async (req: NextRequest) => {
     const result = await chatSession.sendMessage("");
     const responseText = result.response.text();
     const cleanResponse = responseText
-      .replace(/```json|```/g, "") 
-      .replace(/[\r\n]+/g, "")     
+      .replace(/```json|```/g, "")  
+      .replace(/[\r\n]+/g, " ")   
+      .replace(/\*\*(.*?)\*\*/g, "$1") 
+      .replace(/\*(.*?)\*/g, "$1") 
       .trim();  
 
     try {

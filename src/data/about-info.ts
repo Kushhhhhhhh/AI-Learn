@@ -3,22 +3,22 @@ import { Lightbulb, Target, Zap, RefreshCw } from 'lucide-react';
 export const aboutInfo = [
   {
     icon: Lightbulb,
-    title: 'Learn Your Way',
-    description: 'AI-crafted lessons that match your unique learning style perfectly every time.',
+    title: 'Effortless Learning',
+    description: 'Topics simplified and broken down to suit your understanding effortlessly.',
   },
   {
     icon: Target,
-    title: 'Smarter Quizzes',
-    description: 'Quizzes that evolve with you, adapting to your progress seamlessly.',
+    title: 'Dynamic Quizzes',
+    description: 'Generate quizzes tailored to any topic and difficulty level of your choice.',
   },
   {
     icon: Zap,
-    title: "Recent Searches",
-    description: "Access your search history and quickly revisit past topics for easy revision."
+    title: 'Interactive Story Mode',
+    description: 'Transform topics into engaging stories—comedy, horror, or action, you decide!',
   },
   {
     icon: RefreshCw,
-    title: 'Always Evolving',
-    description: 'Continuous updates to keep your learning fresh and impactful.',
+    title: 'Comprehensive History',
+    description: 'Securely track, manage, and revisit your learning, quizzes, or stories anytime.',
   },
 ];

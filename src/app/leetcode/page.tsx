@@ -124,6 +124,20 @@ export default function Leetcode() {
             </form>
           </CardContent>
         </Card>
+        
+        {error && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            className="text-red-500 text-sm leading-relaxed text-center"
+            role="alert"
+          >
+            <strong>Oops!</strong> {error || "Something went wrong while processing your request. Our application might have encountered an issue."}
+            <br />
+            <span className="text-gray-300">Please try again in a few moments. If the problem persists, let us know!</span>
+          </motion.div>
+        )}
 
         {response && <LeetcodeSheet response={response} />}
       </div>
