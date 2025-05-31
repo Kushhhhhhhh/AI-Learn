@@ -112,7 +112,7 @@ const About = () => {
           <h3 className="text-4xl md:text-7xl font-bold text-white mb-10">Our Impact</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
             <div>
-              <p className="text-4xl font-extrabold text-white">22+</p>
+              <p className="text-4xl font-extrabold text-white">14+</p>
               <p className="text-sm text-gray-400">Students Helped</p>
             </div>
             <div>
