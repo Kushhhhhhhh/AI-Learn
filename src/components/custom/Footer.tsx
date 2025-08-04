@@ -8,7 +8,7 @@ const MotionDiv = dynamic(() => import("framer-motion").then((mod) => mod.motion
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6">
+    <footer className="bg-black text-white flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 max-w-5xl mx-auto">
       <p className="text-xs md:text-base text-center sm:text-left">
         © 2025 AILearn | All rights reserved.
       </p>

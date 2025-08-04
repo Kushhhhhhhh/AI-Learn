@@ -48,7 +48,7 @@ export function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
 
   return (
     <div className="parallax">
-      <motion.div className="scroller text-5xl lg:text-7xl" style={{ x }}>
+      <motion.div className="scroller py-10 text-xl" style={{ x }}>
         <span>{children} </span>
         <span>{children} </span>
         <span>{children} </span>

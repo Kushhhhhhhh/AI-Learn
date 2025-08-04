@@ -150,3 +150,9 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #718096;
 }
+
+@keyframes scroll {
+  to {
+    transform: translate(calc(-50% - 0.5rem));
+  }
+}

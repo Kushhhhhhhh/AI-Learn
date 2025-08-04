@@ -15,10 +15,5 @@ export const aboutInfo = [
     icon: Zap,
     title: 'Interactive Story Mode',
     description: 'Transform topics into engaging stories—comedy, horror, or action, you decide!',
-  },
-  {
-    icon: RefreshCw,
-    title: 'Comprehensive History',
-    description: 'Securely track, manage, and revisit your learning, quizzes, or stories anytime.',
-  },
+  }
 ];

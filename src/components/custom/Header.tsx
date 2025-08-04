@@ -38,16 +38,16 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-black text-white px-4 lg:px-8 h-16 flex items-center justify-between shadow-md">
+    <header className="bg-black text-white px-4 lg:px-0 h-16 flex items-center justify-between shadow-md max-w-5xl mx-auto">
 
       <Link href="/" className="flex items-center gap-2">
         <span className="font-bold font-sans text-3xl md:text-4xl md:font-extrabold">AI Learn</span>
       </Link>
 
       <nav className="hidden md:flex gap-6 items-center">
-      
+
         <DropdownMenu>
-          <DropdownMenuTrigger>  
+          <DropdownMenuTrigger>
             Features
           </DropdownMenuTrigger>
           <DropdownMenuContent className="bg-gray-950 text-white rounded-md shadow-md">
@@ -148,11 +148,11 @@ const Header = () => {
           </Button>
         </div>
         <nav className="flex flex-col items-start gap-8 mt-4 px-4 py-2">
-          
+
 
           <DropdownMenu>
-            <DropdownMenuTrigger> 
-            Features
+            <DropdownMenuTrigger>
+              Features
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-gray-950 text-white rounded-md shadow-md">
               <DropdownMenuItem asChild>
@@ -172,13 +172,13 @@ const Header = () => {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-              <Link
-                href="/story-mode"
-                className="px-4 py-2 hover:bg-gray-700 transition-colors rounded-md block"
-              >
-                Story Mode
-              </Link>
-            </DropdownMenuItem>
+                <Link
+                  href="/story-mode"
+                  className="px-4 py-2 hover:bg-gray-700 transition-colors rounded-md block"
+                >
+                  Story Mode
+                </Link>
+              </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link
                   href="/leetcode"
